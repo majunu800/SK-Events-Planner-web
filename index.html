@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Event Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #00c6ff, #0072ff,#26f306,#f3a006);
+      color: white;
+      text-align: center;
+      padding: 50px;
+      align-items: center;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
+    }
+    p {
+      font-size: 1.3em;
+    }
+    .btn {
+      background: white;
+      color: #0072ff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .btn:hover {
+      background: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to SK Event Management</h1>
+  <p>Your one-stop solution for organizing and managing events!</p>
+  <button class="btn" onclick="goToHome()">Get Started</button>
+
+  <script>
+    function goToHome() {
+      alert("Redirecting to home page...");
+      window.location.href = "home.html";
+    }
+  </script>
+</body>
+</html>

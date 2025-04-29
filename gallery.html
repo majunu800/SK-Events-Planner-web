@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Multiple Images and Videos</title>
+  <style>
+     :root {
+      --gold: gold;
+      --light: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    .logo-img {
+      height: 40px; /* shrink it */
+      width: auto;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .logo span {
+      color: var(--light);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin: 0 1rem;
+    }
+
+    .nav-links a {
+      color: var(--light);
+      text-decoration: none;
+      position: relative;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      bottom: -5px;
+      left: 0;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      background-color: #333;
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+   
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      padding: 6rem 2rem 2rem 2rem;
+    }
+    h2 {
+      color: #FFD700;
+    }
+    .preview-container {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 1rem;
+     
+    }
+    .preview-container img,
+    .preview-container video {
+      border: 2px solid #FFD700;
+      border-radius: 10px;
+      align-items: center;
+      max-width: 100%;
+      height: auto;
+      
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #000;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="transparent_logo.png" alt="logo" class="logo-img">
+      SK Event<span>Pro</span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html"class="active">Gallery</a></li>
+      <li><a href="booking.html">Booking</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  
+
+  <h2>Upload and Display Multiple Images</h2>
+  <input type="file" id="imageUpload" accept="image/*" />
+  <div class="preview-container" id="imageContainer">
+    <img src="stage2.jpeg" alt="stage" style="align-items: center;"><br>
+    <img src="stage4.jpeg" alt="stage">
+  </div>
+  
+  <br><br><hr><br>
+
+  <h2>Upload and Display Multiple Videos</h2>
+  <input type="file" id="videoUpload" accept="video/*" />
+  <div class="preview-container" id="videoContainer"></div>
+  <video src="decarationvideo1.mp4" controls width="500"></video>
+  <video src="pregnancy decoration.mp4" controls width="500"></video>
+  <video src="stagevedio.mp4" controls width="500"></video><br>
+  <video src="invitationcard.mp4" controls width="500"></video>
+
+
+  <script>
+    const imageInput = document.getElementById('imageUpload');
+    const imageContainer = document.getElementById('imageContainer');
+
+    imageInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.alt = 'Uploaded Image';
+        imageContainer.appendChild(img);
+      }
+    });
+
+    const videoInput = document.getElementById('videoUpload');
+    const videoContainer = document.getElementById('videoContainer');
+
+    videoInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const video = document.createElement('video');
+        video.src = URL.createObjectURL(file);
+        video.controls = true;
+        videoContainer.appendChild(video);
+      }
+    });
+  </script>    
+
+</body>
+</html>

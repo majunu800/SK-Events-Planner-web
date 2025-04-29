@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SK Event Planning Web</title>
+    <script  src="script.js"></script>
+    <style>
+    :root {
+      --gold: #FFD700;
+      --dark-bg: #111;
+      --light: #fff;
+      --gray: #aaa;
+    }
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-image: url("stage4.jpeg");
+      background-repeat:repeat-x;
+      background-size: 85%;
+      background-attachment: fixed;
+      background-position: top center;
+      animation: moveBackground 30s linear infinite;
+      background-color: var(--dark-bg);
+      color: var(--light);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+    .logo-img {
+      height: 40px; /* shrink it */
+      width: auto;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+
+    .logo{
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .logo span {
+      color: var(--light);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin: 0 1rem;
+    }
+
+    .nav-links a {
+      color: var(--light);
+      text-decoration: none;
+      position: relative;
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      bottom: -5px;
+      left: 0;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      background-color: var(--gold);
+      color: #000;
+      font-weight: bold;
+    }
+
+   
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      color: var(--light);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .hero-text span {
+      color: var(--gold);
+    }
+
+    .cta-button {
+      margin-top: 1.5rem;
+      background: var(--gold);
+      color: #000;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .cta-button:hover {
+      background: #5de31f;
+
+    }
+
+    section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    
+
+    h2 {
+      color: var(--gold);
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    h3{
+      color: lime;
+    }
+
+    .service-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: #1c1c1c;
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid var(--gold);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+    }
+
+    .gallery-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .step {
+      background: #1c1c1c;
+      padding: 1rem;
+      border-left: 4px solid var(--gold);
+      text-align: left;
+      border-radius: 5px;
+    }
+
+    .booking-form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.2s;
+      animation-fill-mode: forwards;
+    }
+
+    .booking-form input,
+    .booking-form textarea {
+      padding: 0.8rem;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .booking-form button {
+      background: var(--gold);
+      border: none;
+      padding: 0.8rem;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .booking-form button.loading {
+      background: #e6c200;
+      cursor: wait;
+    }
+
+    .thank-you {
+      color: var(--gold);
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      display: none;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .footer {
+      background: #000;
+      text-align: center;
+      padding: 1rem;
+      color: var(--gray);
+    }
+    @keyframes moveBackground {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (max-width: 768px) {
+      .box {
+        width: 90%;
+      }
+
+      h1 {
+        
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #000;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="transparent_logo.png" alt="logo" class="logo-img">
+        SK Event<span>Pro</span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="home.html" class="active">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+     
+    </nav>
+    <header class="hero" id="home">
+      <div class="hero-text">
+        <h1>Plan Your <span>Event</span> Like a Pro</h1>
+        <p>Professional. Elegant. Hassle-free.</p><br>
+        <a href="#booking" class="cta-button">Book Now</a>
+      </div>
+    </header>
+    <section class="services" id="services">
+      <h2>Our Services</h2>
+      <div class="service-cards">
+      <div class="card" data-aos="fade-up">
+        <h3>Grand Marriage</h3>
+        <p>We make your function as a grand and best</p>
+      </div>
+      <div class="card" data-aos="fade-up">
+        <h3>Birthday Party</h3>
+        <p>We make your or your child birthday as unimaginary suprisable to give a unforgat the party</p>
+      </div>
+      <div class="card" data-aos="fade-up">
+        <h3>Corporate Meetings</h3>
+        <p>Fully managed professional corporate events with style.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <h3>Product Launches</h3>
+        <p>Make your product the star with a grand introduction.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <h3>Seminars & Workshops</h3>
+        <p>Organize seamless and impactful knowledge sessions.</p>
+      </div>
+      </div>
+    </section>
+    <section class="gallery" id="gallery">
+      <h2>How We Plan</h2>
+      <div class="gallery-steps">
+        <div class="step" data-aos="fade-right">Requirement Gathering</div>
+        <div class="step" data-aos="fade-right" data-aos-delay="100">Venue Selection</div>
+        <div class="step" data-aos="fade-right" data-aos-delay="200">Event Promotion</div>
+        <div class="step" data-aos="fade-right" data-aos-delay="300">Execution</div>
+      </div>
+    </section> 
+    <section class="booking" id="booking">
+      <h2>Book Your Event</h2>
+      <form class="booking-form" onsubmit="sendToWhatsApp(event)">
+        <input type="text" placeholder="Your Name" id="name" required />
+        <input type="email" placeholder="Email" id="email" required />
+        <input type="text" placeholder="Event Type" id="event" required />
+        <textarea placeholder="Your Requirements (This message will be sent via WhatsApp)" id="message" required></textarea>
+        <button id="submitBtn" type="submit">Submit</button>
+        <div class="thank-you" id="thankYou">Thank you!! Opening WhatsApp...</div>
+      </form>
+    </section>  
+    <section class="contact" id="contact">
+      <h2>Contact Us</h2>
+      <p>
+        <a href="https://wa.me/6369311843" target="_blank" style="color: #FFD700;">Click her to Chat on WhatsApp</a>
+        <br>
+        <a href="https://www.instagram.com/sk.event_planner" style="color: #FFD700;">Click her to like and follow our insta page</a>
+      </p>
+    </section> 
+    <footer class="footer">
+      <p>&copy; 2025 EventPro. All Rights Reserved.</p>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+
+      const toggle = document.getElementById('menu-toggle');
+      const navLinks = document.getElementById('navLinks');
+      toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+
+      function sendToWhatsApp(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const event = document.getElementById('event').value;
+        const message = document.getElementById('message').value;
+        const submitBtn = document.getElementById('submitBtn');
+        const thankYou = document.getElementById('thankYou');
+
+        submitBtn.textContent = 'Sending...';
+        submitBtn.classList.add('loading');
+
+        const fullMessage = `Hello! My name is ${name}.\nEmail: ${email}\nEvent Type: ${event}\ninformation: ${message}`;
+        const phoneNumber = '916369311843';
+        const encodedMessage = encodeURIComponent(fullMessage);
+        const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+        thankYou.style.display = 'block';
+        setTimeout(() => {
+          window.open(whatsappURL, '_blank');
+          submitBtn.textContent = 'Submit';
+          submitBtn.classList.remove('loading');
+        }, 1000);
+      }
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        if (link.href === window.location.href) {
+          link.classList.add('active');
+        }
+      });
+    </script>
+  </body>
+</html>
